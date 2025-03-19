@@ -1,0 +1,12 @@
+{
+    "pages": {
+        "主页": "home_page",
+        "云控数据分包": "auto_split_app",
+        "自建小群": "ZJ",
+        "风控截图": "FK",
+        "模拟器加管理（单）": "GUANLI",
+        "VCF制作": "vcf_production",
+        "中文翻译": "common_tools",
+        "待开发": "003"
+    }
+}

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件合并与分号段处理</title>
+    <style>
+        /* 全局样式 */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            overflow: hidden; /* 防止页面整体滚动 */
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 90%;
+            max-height: 90vh; /* 限制容器最大高度 */
+            overflow-y: auto; /* 允许内容滚动 */
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* 登录区域 */
+        #login {
+            margin-bottom: 20px;
+        }
+
+        #login input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        #login button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #login button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 主界面 */
+        #main {
+            display: none;
+        }
+
+        .upload-area {
+            border: 2px dashed #007bff;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .upload-area.dragover {
+            border-color: #0056b3;
+        }
+
+        .upload-area p {
+            color: #666;
+            margin: 0;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        /* 已上传文件列表 */
+        .file-list {
+            margin-top: 20px;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 12px; /* 调小字体 */
+        }
+
+        .file-item span {
+            margin-right: 10px;
+            color: #333;
+        }
+
+        .file-item button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 12px; /* 调小字体 */
+        }
+
+        .file-item button:hover {
+            background-color: #cc0000;
+        }
+
+        /* 按钮样式 */
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 多列布局 */
+        .segment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .segment-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .segment-item span {
+            display: block;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .segment-item .prefix {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .segment-item .count {
+            color: #666;
+        }
+
+        /* 下载按钮 */
+        .download-btn {
+            background-color: #28a745;
+        }
+
+        .download-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>多协议号文件合并自动分号段处理</h1>
+        <div id="login">
+            <input type="password" id="password" placeholder="输入密码">
+            <button onclick="checkPassword()">登录</button>
+        </div>
+        <div id="main">
+            <div class="upload-area" id="uploadArea">
+                <p>将文件拖放到此处或点击上传</p>
+                <input type="file" id="fileInput" multiple accept=".txt">
+            </div>
+            <div class="file-list" id="fileList"></div>
+           <button onclick="clearAllFiles()">全部清除</button>------------------------------------------------
+            <button onclick="processFiles()">开始合并分号段</button>
+            <div class="results" id="results"></div>
+            <button id="downloadBtn" class="download-btn" onclick="downloadFiles()">下载所有号段文件</button>
+            <button id="mergeDownloadBtn" class="download-btn" onclick="downloadMergedFile()">合并号段下载</button>
+        </div>
+            <div class="footer">
+        联系作者：<a href="https://t.me/+447498148126" target="_blank">孤风</a>
+    </div>
+
+    <script>
+        // 密码验证
+        async function checkPassword() {
+            const password = document.getElementById('password').value;
+            const response = await fetch('https://gufeng443.github.io/GF666/password.txt');
+            const correctPassword = await response.text();
+            if (password.trim() === correctPassword.trim()) {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('main').style.display = 'block';
+            } else {
+                alert('密码错误');
+            }
+        }
+
+        // 文件上传区域拖放效果
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+            updateFileList();
+        });
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            updateFileList();
+        });
+
+        // 更新已上传文件列表
+        function updateFileList() {
+            fileList.innerHTML = ''; // 清空列表
+            for (let file of fileInput.files) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span>${file.name}</span>
+                    <button onclick="removeFile('${file.name}')">删除</button>
+                `;
+                fileList.appendChild(fileItem);
+            }
+        }
+
+        // 删除单个文件
+        function removeFile(fileName) {
+            const files = Array.from(fileInput.files);
+            const updatedFiles = files.filter(file => file.name !== fileName);
+            const dataTransfer = new DataTransfer();
+            updatedFiles.forEach(file => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+            updateFileList();
+        }
+
+        // 全部清除
+        function clearAllFiles() {
+            fileInput.value = ''; // 清空文件输入
+            fileList.innerHTML = ''; // 清空文件列表
+        }
+
+        let segmentMap = new Map(); // 存储号段数据
+        let mergedData = []; // 存储合并后的所有数据
+
+        // 处理文件
+        async function processFiles() {
+            const files = fileInput.files;
+            if (files.length === 0) {
+                alert('请先上传文件');
+                return;
+            }
+
+            let allLines = [];
+            for (let file of files) {
+                const text = await file.text();
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+                allLines.push(...lines);
+            }
+
+            // 去重
+            mergedData = [...new Set(allLines)];
+            const totalLines = allLines.length;
+            const duplicateLines = totalLines - mergedData.length;
+
+            // 分号段
+            segmentMap.clear(); // 清空之前的号段数据
+            for (const line of mergedData) {
+                const prefix = line.substring(0, 3);
+                if (!segmentMap.has(prefix)) {
+                    segmentMap.set(prefix, []);
+                }
+                segmentMap.get(prefix).push(line);
+            }
+
+            // 生成结果
+            let resultHtml = `<p>总数据条数: ${totalLines}</p>`;
+            resultHtml += `<p>重复数据条数: ${duplicateLines}</p>`;
+            resultHtml += `<p>合并后数据条数: ${mergedData.length}</p>`;
+
+            // 使用网格布局显示号段信息
+            resultHtml += `<div class="segment-grid">`;
+            for (const [prefix, lines] of segmentMap.entries()) {
+                resultHtml += `
+                    <div class="segment-item">
+                        <span class="prefix">${prefix}</span>
+                        <span class="count">${lines.length} 条数据</span>
+                    </div>
+                `;
+            }
+            resultHtml += `</div>`;
+
+            document.getElementById('results').innerHTML = resultHtml;
+            document.getElementById('downloadBtn').style.display = 'inline-block'; // 显示下载按钮
+            document.getElementById('mergeDownloadBtn').style.display = 'inline-block'; // 显示合并下载按钮
+        }
+
+        // 下载所有号段文件
+        async function downloadFiles() {
+            if (segmentMap.size === 0) {
+                alert('没有可下载的文件');
+                return;
+            }
+
+            for (const [prefix, lines] of segmentMap.entries()) {
+                const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${prefix}号段(${lines.length}条数据).txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                // 添加延迟，避免浏览器限制
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
+
+        // 合并号段下载
+        function downloadMergedFile() {
+            if (mergedData.length === 0) {
+                alert('没有可下载的文件');
+                return;
+            }
+
+            const blob = new Blob([mergedData.join('\n')], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '合并数据.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

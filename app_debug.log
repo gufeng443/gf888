@@ -1,0 +1,35 @@
+2025-02-27 22:31:28,885 - ERROR - 严重错误:
+Traceback (most recent call last):
+  File "E:\GP\pythonProject1\备份文件.py", line 94, in load_groups
+    list_container = self.verify_and_get_list_container(main_window)
+  File "E:\GP\pythonProject1\备份文件.py", line 129, in verify_and_get_list_container
+    logger.info(f"列表容器状态: 可用={list_container.exists()} 可见={list_container.is_visible()}")
+AttributeError: 'ListViewWrapper' object has no attribute 'exists'
+2025-02-27 22:31:44,850 - ERROR - 严重错误:
+Traceback (most recent call last):
+  File "E:\GP\pythonProject1\备份文件.py", line 94, in load_groups
+    list_container = self.verify_and_get_list_container(main_window)
+  File "E:\GP\pythonProject1\备份文件.py", line 129, in verify_and_get_list_container
+    logger.info(f"列表容器状态: 可用={list_container.exists()} 可见={list_container.is_visible()}")
+AttributeError: 'ListViewWrapper' object has no attribute 'exists'
+2025-02-27 22:32:01,125 - ERROR - 严重错误:
+Traceback (most recent call last):
+  File "E:\GP\pythonProject1\备份文件.py", line 94, in load_groups
+    list_container = self.verify_and_get_list_container(main_window)
+  File "E:\GP\pythonProject1\备份文件.py", line 129, in verify_and_get_list_container
+    logger.info(f"列表容器状态: 可用={list_container.exists()} 可见={list_container.is_visible()}")
+AttributeError: 'ListViewWrapper' object has no attribute 'exists'
+2025-02-27 22:37:23,482 - INFO - 列表容器状态: 可见性=True 坐标=(L1304, T295, R1696, B1065)
+2025-02-27 22:37:25,676 - INFO - 开始处理 5 个列表项
+2025-02-27 22:37:25,677 - WARNING - 处理第 1 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:37:25,677 - WARNING - 处理第 2 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:37:25,677 - WARNING - 处理第 3 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:37:25,677 - WARNING - 处理第 4 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:37:25,677 - WARNING - 处理第 5 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:50:31,866 - INFO - 列表容器状态: 可见性=True 坐标=(L1304, T295, R1696, B1065)
+2025-02-27 22:50:34,084 - INFO - 开始处理 5 个列表项
+2025-02-27 22:50:34,084 - WARNING - 处理第 1 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:50:34,084 - WARNING - 处理第 2 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:50:34,084 - WARNING - 处理第 3 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:50:34,085 - WARNING - 处理第 4 项时出错: 'UIAWrapper' object has no attribute 'child_window'
+2025-02-27 22:50:34,085 - WARNING - 处理第 5 项时出错: 'UIAWrapper' object has no attribute 'child_window'

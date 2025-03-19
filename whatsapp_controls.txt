@@ -1,0 +1,373 @@
+Dialog - 'WhatsApp'    (L1392, T146, R2096, B1073)
+['Dialog', 'WhatsAppDialog', 'WhatsApp', 'Dialog0', 'Dialog1', 'WhatsAppDialog0', 'WhatsAppDialog1', 'WhatsApp0', 'WhatsApp1']
+child_window(title="WhatsApp", control_type="Window")
+   |
+   | Dialog - 'WhatsApp'    (L1900, T147, R2088, B179)
+   | ['Dialog2', 'WhatsAppDialog2', 'WhatsApp2']
+   | child_window(title="WhatsApp", auto_id="TitleBar", control_type="Window")
+   |    |
+   |    | Menu - '系统'    (L0, T0, R0, B0)
+   |    | ['系统Menu', 'Menu', '系统', '系统0', '系统1']
+   |    | child_window(title="系统", auto_id="SystemMenuBar", control_type="MenuBar")
+   |    |    |
+   |    |    | MenuItem - '系统'    (L0, T0, R0, B0)
+   |    |    | ['MenuItem', '系统MenuItem', '系统2']
+   |    |    | child_window(title="系统", control_type="MenuItem")
+   |    |
+   |    | Button - '最小化 WhatsApp'    (L1950, T147, R1996, B179)
+   |    | ['最小化 WhatsApp', '最小化 WhatsAppButton', 'Button', 'Button0', 'Button1']
+   |    | child_window(title="最小化 WhatsApp", auto_id="Minimize", control_type="Button")
+   |    |
+   |    | Button - '使 WhatsApp 最大化'    (L1996, T147, R2042, B179)
+   |    | ['使 WhatsApp 最大化Button', '使 WhatsApp 最大化', 'Button2']
+   |    | child_window(title="使 WhatsApp 最大化", auto_id="Maximize", control_type="Button")
+   |    |
+   |    | Button - '关闭 WhatsApp'    (L2042, T147, R2088, B179)
+   |    | ['关闭 WhatsApp', '关闭 WhatsAppButton', 'Button3']
+   |    | child_window(title="关闭 WhatsApp", auto_id="Close", control_type="Button")
+   |
+   | Dialog - 'WhatsApp'    (L1400, T147, R2088, B1065)
+   | ['Dialog3', 'WhatsAppDialog3', 'WhatsApp3']
+   | child_window(title="WhatsApp", control_type="Window")
+   |    |
+   |    | Custom - ''    (L1400, T147, R2088, B1065)
+   |    | ['WhatsAppCustom', 'Custom']
+   |    | child_window(auto_id="NavigationList", control_type="Custom")
+   |    |    |
+   |    |    | Button - '打开导航'    (L1404, T201, R1444, B237)
+   |    |    | ['打开导航', 'Button4', '打开导航Button']
+   |    |    | child_window(title="打开导航", auto_id="TogglePaneButton", control_type="Button")
+   |    |    |
+   |    |    | Dialog - ''    (L1400, T147, R1448, B1065)
+   |    |    | ['Dialog4', 'WhatsAppDialog4']
+   |    |    | child_window(auto_id="PaneRoot", control_type="Window")
+   |    |    |    |
+   |    |    |    | Pane - ''    (L1400, T247, R1448, B840)
+   |    |    |    | ['Pane', 'WhatsAppPane', 'Pane0', 'Pane1', 'WhatsAppPane0', 'WhatsAppPane1']
+   |    |    |    | child_window(auto_id="MenuItemsScrollViewer", control_type="Pane")
+   |    |    |    |    |
+   |    |    |    |    | GroupBox - ''    (L1404, T249, R1444, B365)
+   |    |    |    |    | ['GroupBox', 'GroupBox0', 'GroupBox1']
+   |    |    |    |    | child_window(auto_id="MenuItemsHost", control_type="Group")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '对话'    (L1404, T249, R1444, B285)
+   |    |    |    |    |    | ['对话', 'ListItem', '对话ListItem', '对话0', '对话1', 'ListItem0', 'ListItem1']
+   |    |    |    |    |    | child_window(title="对话", auto_id="ChatsNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '对话'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['对话2', '对话Static', 'Static', 'Static0', 'Static1', '对话Static0', '对话Static1']
+   |    |    |    |    |    |    | child_window(title="对话", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '通话'    (L1404, T289, R1444, B325)
+   |    |    |    |    |    | ['通话ListItem', '通话', 'ListItem2', '通话0', '通话1']
+   |    |    |    |    |    | child_window(title="通话", auto_id="CallsNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '通话'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['通话2', '通话Static', 'Static2']
+   |    |    |    |    |    |    | child_window(title="通话", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '动态'    (L1404, T329, R1444, B365)
+   |    |    |    |    |    | ['动态', '动态ListItem', 'ListItem3', '动态0', '动态1']
+   |    |    |    |    |    | child_window(title="动态", auto_id="StatusNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '动态'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['动态2', 'Static3', '动态Static']
+   |    |    |    |    |    |    | child_window(title="动态", control_type="Text")
+   |    |    |    |
+   |    |    |    | Pane - ''    (L1400, T844, R1448, B1061)
+   |    |    |    | ['Pane2', 'WhatsAppPane2']
+   |    |    |    | child_window(auto_id="FooterItemsScrollViewer", control_type="Pane")
+   |    |    |    |    |
+   |    |    |    |    | GroupBox - ''    (L1404, T846, R1444, B1059)
+   |    |    |    |    | ['GroupBox2']
+   |    |    |    |    | child_window(auto_id="FooterMenuItemsHost", control_type="Group")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '锁定的对话'    (L1404, T846, R1444, B882)
+   |    |    |    |    |    | ['锁定的对话ListItem', 'ListItem4', '锁定的对话', '锁定的对话0', '锁定的对话1']
+   |    |    |    |    |    | child_window(title="锁定的对话", auto_id="LockedChatsNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '锁定的对话'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['锁定的对话Static', 'Static4', '锁定的对话2']
+   |    |    |    |    |    |    | child_window(title="锁定的对话", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '已加星标消息'    (L1404, T886, R1444, B922)
+   |    |    |    |    |    | ['已加星标消息', 'ListItem5', '已加星标消息ListItem', '已加星标消息0', '已加星标消息1']
+   |    |    |    |    |    | child_window(title="已加星标消息", auto_id="StarredMessagesNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '已加星标消息'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['Static5', '已加星标消息Static', '已加星标消息2']
+   |    |    |    |    |    |    | child_window(title="已加星标消息", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '已归档的对话'    (L1404, T926, R1444, B962)
+   |    |    |    |    |    | ['已归档的对话', 'ListItem6', '已归档的对话ListItem', '已归档的对话0', '已归档的对话1']
+   |    |    |    |    |    | child_window(title="已归档的对话", auto_id="ArchivedChatsNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '已归档的对话'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['已归档的对话2', '已归档的对话Static', 'Static6']
+   |    |    |    |    |    |    | child_window(title="已归档的对话", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '打开“设置”'    (L1404, T983, R1444, B1019)
+   |    |    |    |    |    | ['打开“设置”', '打开“设置”ListItem', 'ListItem7']
+   |    |    |    |    |    | child_window(title="打开“设置”", auto_id="SettingNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '设置'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['设置Static', '设置', 'Static7']
+   |    |    |    |    |    |    | child_window(title="设置", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | ListItem - '个人主页'    (L1404, T1023, R1444, B1059)
+   |    |    |    |    |    | ['个人主页ListItem', 'ListItem8', '个人主页', '个人主页0', '个人主页1']
+   |    |    |    |    |    | child_window(title="个人主页", auto_id="ProfileNavigationItem", control_type="ListItem")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Static - '个人主页'    (L0, T0, R0, B0)
+   |    |    |    |    |    |    | ['个人主页Static', 'Static8', '个人主页2']
+   |    |    |    |    |    |    | child_window(title="个人主页", control_type="Text")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | Image - ''    (L1412, T1029, R1436, B1053)
+   |    |    |    |    |    |    | ['Image', 'Image0', 'Image1']
+   |    |    |
+   |    |    | Edit - ''    (L0, T0, R0, B0)
+   |    |    | ['Edit', 'Edit0', 'Edit1']
+   |    |    | child_window(auto_id="ForwardListViewFocusProxy", control_type="Edit")
+   |    |    |
+   |    |    | ListBox - '消息'    (L1715, T253, R2088, B1015)
+   |    |    | ['消息ListBox', 'ListBox', '消息', 'ListBox0', 'ListBox1', '消息0', '消息1']
+   |    |    | child_window(title="消息", auto_id="MessagesList", control_type="List")
+   |    |    |    |
+   |    |    |    | ListItem - '2025/2/27'    (L1715, T750, R2088, B790)
+   |    |    |    | ['2025/2/27ListItem', 'ListItem9', '2025/2/27']
+   |    |    |    | child_window(title="2025/2/27", auto_id="BubbleListItem", control_type="ListItem")
+   |    |    |    |    |
+   |    |    |    |    | Static - '今天'    (L1890, T764, R1914, B779)
+   |    |    |    |    | ['今天', '今天Static', 'Static9', '今天0', '今天1', '今天Static0', '今天Static1']
+   |    |    |    |    | child_window(title="今天", control_type="Text")
+   |    |    |    |
+   |    |    |    | ListItem - '消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。'    (L1715, T790, R2088, B860)
+   |    |    |    | ['ListItem10', '消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。', '消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。ListItem']
+   |    |    |    | child_window(title="消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。", auto_id="BubbleListItem", control_type="ListItem")
+   |    |    |    |    |
+   |    |    |    |    | Static - '消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。\r\n'    (L1764, T803, R2040, B844)
+   |    |    |    |    | ['\ue594消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。\r\nStatic', '\ue594消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。\r\n', 'Static10']
+   |    |    |    |    | child_window(title="消息和通话会进行端到端加密。该对话以外的任何人都无法查看和收听，WhatsApp 也不例外。选择以了解更多。\r\n", auto_id="RichTextBlock", control_type="Text")
+   |    |    |    |
+   |    |    |    | ListItem - '@+261 34 05 164 52创建了群组“Goldman Trading 1”'    (L1715, T860, R2088, B905)
+   |    |    |    | ['@+261 34 05 164 52创建了群组“Goldman Trading 1”', 'ListItem11', '@+261 34 05 164 52创建了群组“Goldman Trading 1”ListItem']
+   |    |    |    | child_window(title="@+261 34 05 164 52创建了群组“Goldman Trading 1”", auto_id="BubbleListItem", control_type="ListItem")
+   |    |    |    |    |
+   |    |    |    |    | Static - '+261 34 05 164 52创建了群组“Goldman Trading 1”\r\n'    (L1778, T876, R2025, B889)
+   |    |    |    |    | ['+261 34 05 164 52创建了群组“Goldman Trading 1”\r\nStatic', 'Static11', '+261 34 05 164 52创建了群组“Goldman Trading 1”\r\n']
+   |    |    |    |    | child_window(title="+261 34 05 164 52创建了群组“Goldman Trading 1”\r\n", auto_id="RichTextBlock", control_type="Text")
+   |    |    |    |    |    |
+   |    |    |    |    |    | Hyperlink - '+261 34 05 164 52'    (L1778, T876, R1868, B888)
+   |    |    |    |    |    | ['Hyperlink', '+261 34 05 164 52Hyperlink', '+261 34 05 164 52']
+   |    |    |    |    |    | child_window(title="+261 34 05 164 52", control_type="Hyperlink")
+   |    |    |    |
+   |    |    |    | ListItem - '你通过邀请链接加入了此群组'    (L1715, T905, R2088, B950)
+   |    |    |    | ['你通过邀请链接加入了此群组ListItem', '你通过邀请链接加入了此群组', 'ListItem12']
+   |    |    |    | child_window(title="你通过邀请链接加入了此群组", auto_id="BubbleListItem", control_type="ListItem")
+   |    |    |    |    |
+   |    |    |    |    | Static - '你通过邀请链接加入了此群组\r\n'    (L1830, T921, R1973, B934)
+   |    |    |    |    | ['你通过邀请链接加入了此群组\r\nStatic', '你通过邀请链接加入了此群组\r\n', 'Static12']
+   |    |    |    |    | child_window(title="你通过邀请链接加入了此群组\r\n", auto_id="RichTextBlock", control_type="Text")
+   |    |    |    |
+   |    |    |    | ListItem - '你已成为群组管理员'    (L1715, T950, R2088, B995)
+   |    |    |    | ['你已成为群组管理员ListItem', 'ListItem13', '你已成为群组管理员', '你已成为群组管理员0', '你已成为群组管理员1']
+   |    |    |    | child_window(title="你已成为群组管理员", auto_id="BubbleListItem", control_type="ListItem")
+   |    |    |    |    |
+   |    |    |    |    | Static - '你已成为群组管理员\r\n'    (L1852, T966, R1951, B979)
+   |    |    |    |    | ['你已成为群组管理员\r\nStatic', '你已成为群组管理员\r\n', 'Static13']
+   |    |    |    |    | child_window(title="你已成为群组管理员\r\n", auto_id="RichTextBlock", control_type="Text")
+   |    |    |
+   |    |    | Edit - ''    (L0, T0, R0, B0)
+   |    |    | ['Edit2']
+   |    |    | child_window(auto_id="BackwardListViewFocusProxy", control_type="Edit")
+   |    |    |
+   |    |    | Static - '今天'    (L1890, T271, R1914, B286)
+   |    |    | ['今天2', '今天Static2', 'Static14']
+   |    |    | child_window(title="今天", control_type="Text")
+   |    |    |
+   |    |    | Button - '跳到最新消息'    (L2030, T955, R2070, B997)
+   |    |    | ['跳到最新消息Button', '跳到最新消息', 'Button5']
+   |    |    | child_window(title="跳到最新消息", control_type="Button")
+   |    |    |
+   |    |    | Button - '对话信息'    (L1715, T188, R2072, B252)
+   |    |    | ['对话信息Button', '对话信息', 'Button6']
+   |    |    | child_window(title="对话信息", auto_id="TitleButton", control_type="Button")
+   |    |    |    |
+   |    |    |    | Button - ''    (L1715, T214, R1739, B227)
+   |    |    |    | ['对话Button', 'Button7']
+   |    |    |    | child_window(auto_id="HiddenAnnouncementBox", control_type="Button")
+   |    |    |    |
+   |    |    |    | Image - ''    (L1735, T200, R1775, B240)
+   |    |    |    | ['对话Image', 'Image2']
+   |    |    |    | child_window(auto_id="ChatPicture", control_type="Image")
+   |    |    |    |
+   |    |    |    | Static - 'Goldman Trading 1'    (L1787, T202, R1907, B219)
+   |    |    |    | ['Goldman Trading 1Static', 'Static15', 'Goldman Trading 1', 'Goldman Trading 1Static0', 'Goldman Trading 1Static1', 'Goldman Trading 10', 'Goldman Trading 11']
+   |    |    |    | child_window(title="Goldman Trading 1", control_type="Text")
+   |    |    |    |
+   |    |    |    | Static - '公告'    (L1787, T222, R2072, B239)
+   |    |    |    | ['公告Static', '公告', 'Static16']
+   |    |    |    | child_window(title="公告", auto_id="SubtitleBlock", control_type="Text")
+   |    |    |
+   |    |    | Button - '在对话中搜索 (Ctrl+Shift+F)'    (L2040, T200, R2080, B240)
+   |    |    | ['在对话中搜索 (Ctrl+Shift+F)Button', 'Button8', '在对话中搜索 (Ctrl+Shift+F)']
+   |    |    | child_window(title="在对话中搜索 (Ctrl+Shift+F)", auto_id="SearchButton", control_type="Button")
+   |    |    |
+   |    |    | Button - '添加表情符号'    (L1723, T1020, R1763, B1060)
+   |    |    | ['添加表情符号', '添加表情符号Button', 'Button9']
+   |    |    | child_window(title="添加表情符号", auto_id="EmojiButton", control_type="Button")
+   |    |    |
+   |    |    | Button - '添加附件'    (L1767, T1020, R1807, B1060)
+   |    |    | ['Button10', '添加附件Button', '添加附件']
+   |    |    | child_window(title="添加附件", auto_id="AttachButton", control_type="Button")
+   |    |    |
+   |    |    | Edit - ''    (L1811, T1020, R2036, B1060)
+   |    |    | ['输入消息Edit', 'Edit3']
+   |    |    | child_window(auto_id="InputBarTextBox", control_type="Edit")
+   |    |    |    |
+   |    |    |    | Static - '输入消息'    (L1811, T1022, R2036, B1055)
+   |    |    |    | ['输入消息', '输入消息Static', 'Static17']
+   |    |    |    | child_window(title="输入消息", auto_id="PlaceholderTextContentPresenter", control_type="Text")
+   |    |    |
+   |    |    | Button - '录制语音消息'    (L2040, T1020, R2080, B1060)
+   |    |    | ['录制语音消息Button', '录制语音消息', 'Button11']
+   |    |    | child_window(title="录制语音消息", auto_id="RightButton", control_type="Button")
+   |    |    |
+   |    |    | Static - '对话'    (L1471, T209, R1620, B237)
+   |    |    | ['对话3', '对话Static2', 'Static18']
+   |    |    | child_window(title="对话", auto_id="LeftPanelTitleText", control_type="Text")
+   |    |    |
+   |    |    | Button - '新建对话'    (L1620, T200, R1660, B240)
+   |    |    | ['新建对话Button', 'Button12', '新建对话']
+   |    |    | child_window(title="新建对话", auto_id="NewConvoButton", control_type="Button")
+   |    |    |
+   |    |    | Button - '对话筛选条件'    (L1664, T200, R1704, B240)
+   |    |    | ['对话筛选条件', 'Button13', '对话筛选条件Button']
+   |    |    | child_window(title="对话筛选条件", auto_id="FilterButton", control_type="Button")
+   |    |    |
+   |    |    | Edit - ''    (L1469, T251, R1694, B283)
+   |    |    | ['对话Edit', 'Edit4']
+   |    |    | child_window(auto_id="SearchQueryTextBox", control_type="Edit")
+   |    |    |    |
+   |    |    |    | Static - '搜索或开始新对话'    (L1469, T253, R1670, B281)
+   |    |    |    | ['搜索或开始新对话Static', '搜索或开始新对话', 'Static19']
+   |    |    |    | child_window(title="搜索或开始新对话", auto_id="PlaceholderTextContentPresenter", control_type="Text")
+   |    |    |
+   |    |    | ListBox - '对话列表'    (L1449, T295, R1714, B1065)
+   |    |    | ['ListBox2', '对话列表', '对话列表ListBox']
+   |    |    | child_window(title="对话列表", auto_id="ChatList", control_type="List")
+   |    |    |    |
+   |    |    |    | GroupBox - ''    (L0, T0, R0, B0)
+   |    |    |    | ['GroupBox3']
+   |    |    |    |
+   |    |    |    | GroupBox - ''    (L1449, T298, R1714, B514)
+   |    |    |    | ['搜索或开始新对话GroupBox', 'GroupBox4']
+   |    |    |    |    |
+   |    |    |    |    | ListItem - 'Goldman Trading 1 你已成为群组管理员'    (L1449, T298, R1714, B370)
+   |    |    |    |    | ['Goldman Trading 1 你已成为群组管理员ListItem', 'ListItem14', 'Goldman Trading 1 你已成为群组管理员', 'Goldman Trading 1 你已成为群组管理员0', 'Goldman Trading 1 你已成为群组管理员1', 'Goldman Trading 1 你已成为群组管理员ListItem0', 'Goldman Trading 1 你已成为群组管理员ListItem1']
+   |    |    |    |    | child_window(title="Goldman Trading 1 你已成为群组管理员", auto_id="ChatsListItem", control_type="ListItem")
+   |    |    |    |    |    |
+   |    |    |    |    |    | GroupBox - 'Goldman Trading 1 你已成为群组管理员'    (L1449, T298, R1714, B370)
+   |    |    |    |    |    | ['GroupBox5', 'Goldman Trading 1 你已成为群组管理员2', 'Goldman Trading 1 你已成为群组管理员GroupBox']
+   |    |    |    |    |    | child_window(title="Goldman Trading 1 你已成为群组管理员", auto_id="View", control_type="Group")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | ListItem - 'Goldman Trading 1 你已成为群组管理员'    (L1449, T298, R1714, B370)
+   |    |    |    |    |    |    | ['Goldman Trading 1 你已成为群组管理员ListItem2', 'ListItem15', 'Goldman Trading 1 你已成为群组管理员3']
+   |    |    |    |    |    |    | child_window(title="Goldman Trading 1 你已成为群组管理员", control_type="ListItem")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Image - ''    (L1473, T310, R1521, B358)
+   |    |    |    |    |    |    |    | ['搜索或开始新对话Image', 'Image3', '搜索或开始新对话Image0', '搜索或开始新对话Image1']
+   |    |    |    |    |    |    |    | child_window(auto_id="AvatarView", control_type="Image")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - 'Goldman Trading 1'    (L1535, T314, R1640, B334)
+   |    |    |    |    |    |    |    | ['Goldman Trading 1Static2', 'Static20', 'Goldman Trading 12']
+   |    |    |    |    |    |    |    | child_window(title="Goldman Trading 1", auto_id="Title", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '‎20‎:‎35'    (L1661, T316, R1690, B332)
+   |    |    |    |    |    |    |    | ['\u200e20\u200e:\u200e35Static', '\u200e20\u200e:\u200e35', 'Static21', '\u200e20\u200e:\u200e35Static0', '\u200e20\u200e:\u200e35Static1', '\u200e20\u200e:\u200e350', '\u200e20\u200e:\u200e351']
+   |    |    |    |    |    |    |    | child_window(title="‎20‎:‎35", auto_id="Time", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '你已成为群组管理员'    (L1535, T334, R1676, B352)
+   |    |    |    |    |    |    |    | ['你已成为群组管理员Static', 'Static22', '你已成为群组管理员2']
+   |    |    |    |    |    |    |    | child_window(title="你已成为群组管理员", auto_id="Preview", control_type="Text")
+   |    |    |    |    |
+   |    |    |    |    | ListItem - '‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f'    (L1449, T370, R1714, B442)
+   |    |    |    |    | ['\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f', 'ListItem16', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fListItem', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f0', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f1', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fListItem0', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fListItem1']
+   |    |    |    |    | child_window(title="‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f", auto_id="ChatsListItem", control_type="ListItem")
+   |    |    |    |    |    |
+   |    |    |    |    |    | GroupBox - '‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f'    (L1449, T370, R1714, B442)
+   |    |    |    |    |    | ['\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fGroupBox', 'GroupBox6', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f2']
+   |    |    |    |    |    | child_window(title="‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f", auto_id="View", control_type="Group")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | ListItem - '‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f'    (L1449, T370, R1714, B442)
+   |    |    |    |    |    |    | ['\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f3', 'ListItem17', '\u200e+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fListItem2']
+   |    |    |    |    |    |    | child_window(title="‎+972 56-327-1379 (自己) https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f", control_type="ListItem")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Image - ''    (L1473, T382, R1521, B430)
+   |    |    |    |    |    |    |    | ['搜索或开始新对话Image2', 'Image4']
+   |    |    |    |    |    |    |    | child_window(auto_id="AvatarView", control_type="Image")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '‎+972 56-327-1379 (自己)'    (L1535, T386, R1639, B406)
+   |    |    |    |    |    |    |    | ['\u200e+972 56-327-1379 (自己)Static', 'Static23', '\u200e+972 56-327-1379 (自己)']
+   |    |    |    |    |    |    |    | child_window(title="‎+972 56-327-1379 (自己)", auto_id="Title", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '‎20‎:‎35'    (L1661, T388, R1690, B404)
+   |    |    |    |    |    |    |    | ['\u200e20\u200e:\u200e35Static2', '\u200e20\u200e:\u200e352', 'Static24']
+   |    |    |    |    |    |    |    | child_window(title="‎20‎:‎35", auto_id="Time", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - 'https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f'    (L1535, T406, R1676, B424)
+   |    |    |    |    |    |    |    | ['\ue580https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f', '\ue580https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1fStatic', 'Static25']
+   |    |    |    |    |    |    |    | child_window(title="https://chat.whatsapp.com/KdwvBmCH58fJJzj3F1bw1f", auto_id="Preview", control_type="Text")
+   |    |    |    |    |
+   |    |    |    |    | ListItem - '11 群组已遭暂停'    (L1449, T442, R1714, B514)
+   |    |    |    |    | ['11 群组已遭暂停', '11 群组已遭暂停ListItem', 'ListItem18', '11 群组已遭暂停0', '11 群组已遭暂停1', '11 群组已遭暂停ListItem0', '11 群组已遭暂停ListItem1']
+   |    |    |    |    | child_window(title="11 群组已遭暂停", auto_id="ChatsListItem", control_type="ListItem")
+   |    |    |    |    |    |
+   |    |    |    |    |    | GroupBox - '11 群组已遭暂停'    (L1449, T442, R1714, B514)
+   |    |    |    |    |    | ['11 群组已遭暂停2', '11 群组已遭暂停GroupBox', 'GroupBox7']
+   |    |    |    |    |    | child_window(title="11 群组已遭暂停", auto_id="View", control_type="Group")
+   |    |    |    |    |    |    |
+   |    |    |    |    |    |    | ListItem - '11 群组已遭暂停'    (L1449, T442, R1714, B514)
+   |    |    |    |    |    |    | ['11 群组已遭暂停3', '11 群组已遭暂停ListItem2', 'ListItem19']
+   |    |    |    |    |    |    | child_window(title="11 群组已遭暂停", control_type="ListItem")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Image - ''    (L1473, T454, R1521, B502)
+   |    |    |    |    |    |    |    | ['搜索或开始新对话Image3', 'Image5']
+   |    |    |    |    |    |    |    | child_window(auto_id="AvatarView", control_type="Image")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '11'    (L1535, T458, R1547, B478)
+   |    |    |    |    |    |    |    | ['11', '11Static', 'Static26']
+   |    |    |    |    |    |    |    | child_window(title="11", auto_id="Title", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '‎21‎:‎17'    (L1661, T460, R1690, B476)
+   |    |    |    |    |    |    |    | ['\u200e21\u200e:\u200e17Static', '\u200e21\u200e:\u200e17', 'Static27']
+   |    |    |    |    |    |    |    | child_window(title="‎21‎:‎17", auto_id="Time", control_type="Text")
+   |    |    |    |    |    |    |    |
+   |    |    |    |    |    |    |    | Static - '‪‬群组已遭暂停'    (L1535, T478, R1676, B496)
+   |    |    |    |    |    |    |    | ['\u202a\ue584\u202c群组已遭暂停', 'Static28', '\u202a\ue584\u202c群组已遭暂停Static']
+   |    |    |    |    |    |    |    | child_window(title="‪‬群组已遭暂停", auto_id="Preview", control_type="Text")
+   |    |    |    |
+   |    |    |    | GroupBox - '联系人'    (L0, T0, R0, B0)
+   |    |    |    | ['联系人', 'GroupBox8', '联系人GroupBox']
+   |    |    |    | child_window(title="联系人", control_type="Group")
+   |    |    |    |
+   |    |    |    | GroupBox - '群组'    (L0, T0, R0, B0)
+   |    |    |    | ['群组', '群组GroupBox', 'GroupBox9']
+   |    |    |    | child_window(title="群组", control_type="Group")
+   |    |    |    |
+   |    |    |    | GroupBox - '消息'    (L0, T0, R0, B0)
+   |    |    |    | ['消息2', '消息GroupBox', 'GroupBox10']
+   |    |    |    | child_window(title="消息", control_type="Group")
+   |    |
+   |    | Image - ''    (L1408, T151, R1440, B183)
+   |    | ['Image6']
+   |    |
+   |    | Static - 'WhatsApp'    (L1444, T159, R1500, B175)
+   |    | ['WhatsApp4', 'Static29', 'WhatsAppStatic']
+   |    | child_window(title="WhatsApp", control_type="Text")
+   |    |
+   |    | Static - ''    (L0, T0, R0, B0)
+   |    | ['Static30']
+   |
+   | Pane - ''    (L1400, T179, R2088, B1065)
+   | ['Pane3', 'WhatsAppPane3']

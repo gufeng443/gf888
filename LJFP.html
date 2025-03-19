@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料子名分配链接</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .input-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .button-group button {
+            flex: 1;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button-group button:hover {
+            background-color: #45a049;
+        }
+        .output-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .output-group textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical;
+        }
+        .output-group h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .download-buttons button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .download-buttons button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>料子名分配链接</h1>
+        <div class="input-group">
+            <label for="password">请输入密码：</label>
+            <input type="password" id="password" placeholder="密码">
+        </div>
+        <div class="button-group">
+            <button onclick="checkPassword()">验证密码</button>
+        </div>
+
+        <div id="content" style="display:none;">
+            <div class="input-group">
+                <label for="materialName">料子名：</label>
+                <input type="text" id="materialName" placeholder="例如：Jak-A">
+            </div>
+            <div class="input-group">
+                <label for="quantity">分配数量：</label>
+                <input type="number" id="quantity" placeholder="例如：10">
+            </div>
+            <div class="input-group">
+                <label for="startNumber">起始编号：</label>
+                <input type="number" id="startNumber" placeholder="例如：41">
+            </div>
+            <div class="input-group">
+                <label for="links">链接数据（每行一个链接）：</label>
+                <textarea id="links" placeholder="例如：https://example.com/1"></textarea>
+            </div>
+            <div class="button-group">
+                <button onclick="generate()">生成</button>
+            </div>
+
+            <div class="output-group">
+                <div>
+                    <h3>生成的完整数据</h3>
+                    <textarea id="output" readonly placeholder="生成的完整数据将显示在这里"></textarea>
+                </div>
+                <div>
+                    <h3>生成的料子名</h3>
+                    <textarea id="materialOutput" readonly placeholder="生成的料子名将显示在这里"></textarea>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <button onclick="downloadFile()">下载完整数据</button>
+                <button onclick="downloadMaterialFile()">下载料子名</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let generatedData = ''; //
+        let generatedMaterialData = ''; // 用于存储生成的料子名数据
+
+        async function checkPassword() {
+            const password = document.getElementById('password').value;
+            const response = await fetch('https://gufeng443.github.io/GF666/password.txt');
+            const correctPassword = await response.text();
+
+            if (password === correctPassword.trim()) {
+                document.getElementById('content').style.display = 'block';
+            } else {
+                alert('密码错误！');
+            }
+        }
+
+        function generate() {
+            const materialName = document.getElementById('materialName').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const startNumber = parseInt(document.getElementById('startNumber').value);
+            const linksInput = document.getElementById('links').value.split('\n').filter(link => link.trim() !== '');
+            const output = document.getElementById('output');
+            const materialOutput = document.getElementById('materialOutput');
+
+            // 过滤链接数据，只提取有效的链接
+            const links = linksInput.map(link => {
+                const urlPattern = /https?:\/\/[^\s]+/;
+                const match = link.match(urlPattern);
+                return match ? match[0] : '';
+            }).filter(link => link !== ''); // 过滤掉空值
+
+            let result = '';
+            let materialResult = '';
+            let linkIndex = 0;
+
+            for (let i = 0; i < quantity; i++) {
+                const currentNumber = startNumber + i;
+                const materialLine = `${materialName}-${currentNumber}-\n`; // 料子名
+                result += materialLine; // 添加到完整结果
+                materialResult += materialLine; // 添加到料子名结果
+
+                if (linkIndex < links.length) {
+                    result += `${links[linkIndex]}\n`; // 链接数据
+                    linkIndex++;
+                } else {
+                    result += '\n'; // 链接数据不足，留空
+                }
+            }
+
+            generatedData = result; // 保存生成的数据
+            generatedMaterialData = materialResult; // 保存生成的料子名数据
+            output.value = result; // 显示完整生成的数据
+            materialOutput.value = materialResult; // 显示生成的料子名
+        }
+
+        function downloadFile() {
+            const materialName = document.getElementById('materialName').value;
+            if (!materialName || !generatedData) {
+                alert('请先生成数据！');
+                return;
+            }
+
+            const blob = new Blob([generatedData], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${materialName}.txt`; // 以料子名命名文件
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadMaterialFile() {
+            const materialName = document.getElementById('materialName').value;
+            if (!materialName || !generatedMaterialData) {
+                alert('请先生成数据！');
+                return;
+            }
+
+            const blob = new Blob([generatedMaterialData], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${materialName}_料子名.txt`; // 以料子名命名文件
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

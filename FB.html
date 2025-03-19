@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动分料子程序</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+            padding: 15px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .text-muted {
+            color: #6c757d !important;
+        }
+        .community-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .community-options button {
+            flex: 1;
+            margin: 0 5px;
+        }
+        .selected {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+        .selected-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 密码验证界面 -->
+        <div id="passwordSection">
+            <h1 class="text-center mb-4" style="color: #007bff;">自动分料子程序</h1>
+            <div class="card">
+                <div class="card-header">密码验证</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="password">密码:</label>
+                        <input type="password" id="password" class="form-control" placeholder="输入密码">
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="checkPassword()">进入</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主界面 -->
+        <div id="main" class="mt-4" style="display:none;">
+            <h1 class="text-center mb-4" style="color: #007bff;">自动分料子程序</h1>
+            <!-- 当前选择的社群规模提示 -->
+            <div id="selectedInfo" class="selected-info">当前选择：400人社群</div>
+
+            <!-- 社群规模选项 -->
+            <div class="community-options">
+                <button id="btn400" class="btn btn-outline-primary selected" onclick="setCommunitySize(400)">400人社群</button>
+                <button id="btn500" class="btn btn-outline-primary" onclick="setCommunitySize(500)">500人社群</button>
+                <button id="btn1000" class="btn btn-outline-primary" onclick="setCommunitySize(1000)">1000人社群</button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">分料子设置</div>
+                <div class="card-body">
+                    <!-- 料子名称 -->
+                    <div class="form-group">
+                        <label for="materialName">料子名称:</label>
+                        <input type="text" id="materialName" class="form-control" placeholder="例如：AAC-{序号}-天天">
+                    </div>
+
+                    <!-- 料子号码 -->
+                    <div class="form-group">
+                        <label for="material">料子号码:</label>
+                        <textarea id="material" class="form-control" placeholder="每行一个料子号码" rows="4"></textarea>
+                        <div id="materialCount" class="text-muted mt-2"></div>
+                    </div>
+
+                    <!-- 分包大小 -->
+                    <div class="form-group">
+                        <label for="batchSize">分包大小:</label>
+                        <input type="number" id="batchSize" class="form-control" placeholder="例如：4000">
+                    </div>
+
+                    <!-- 管理员号码 -->
+                    <div class="form-group">
+                        <label for="admin">管理员号码:</label>
+                        <textarea id="admin" class="form-control" placeholder="每行一个管理员号码" rows="4"></textarea>
+                        <div id="adminCount" class="text-muted mt-2"></div>
+                    </div>
+
+                    <!-- 水军号码 -->
+                    <div class="form-group">
+                        <label for="waterArmy">水军号码:</label>
+                        <textarea id="waterArmy" class="form-control" placeholder="每行一个水军号码" rows="4"></textarea>
+                        <div id="waterArmyCount" class="text-muted mt-2"></div>
+                    </div>
+
+                    <!-- 群名称 -->
+                    <div class="form-group">
+                        <label for="groupName">群名称:</label>
+                        <input type="text" id="groupName" class="form-control" placeholder="例如：{序号} Goldman Trading">
+                    </div>
+
+                    <!-- 起始编号 -->
+                    <div class="form-group">
+                        <label for="startNumber">起始编号:</label>
+                        <input type="number" id="startNumber" class="form-control" placeholder="例如：1">
+                    </div>
+
+                    <!-- 群描述 -->
+                    <div class="form-group">
+                        <label for="groupDesc">群描述:</label>
+                        <textarea id="groupDesc" class="form-control" placeholder="例如：欢迎加入..." rows="4"></textarea>
+                    </div>
+
+                    <!-- 社群链接 -->
+                    <div class="form-group">
+                        <label for="groupLinks">社群链接:</label>
+                        <textarea id="groupLinks" class="form-control" placeholder="每行一个社群链接" rows="4"></textarea>
+                    </div>
+
+                    <!-- 开始执行按钮 -->
+                    <button class="btn btn-primary w-100" onclick="execute()">开始执行</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系作者 -->
+    <div class="footer">
+        联系作者：<a href="https://t.me/+447498148126" target="_blank">孤风</a>
+    </div>
+
+    <!-- 引入 Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let communitySize = 400; // 默认社群规模为 400 人
+
+        function checkPassword() {
+            fetch('https://gufeng443.github.io/GF666/password.txt')
+                .then(response => response.text())
+                .then(data => {
+                    if (document.getElementById('password').value.trim() === data.trim()) {
+                        document.getElementById('passwordSection').style.display = 'none'; // 隐藏密码验证界面
+                        document.getElementById('main').style.display = 'block'; // 显示主界面
+                    } else {
+                        alert('密码错误');
+                    }
+                });
+        }
+
+        function setCommunitySize(size) {
+            communitySize = size; // 设置社群规模
+
+            // 更新按钮样式
+            document.querySelectorAll('.community-options button').forEach(button => {
+                button.classList.remove('selected');
+            });
+            document.getElementById(`btn${size}`).classList.add('selected');
+
+            // 更新提示信息
+            document.getElementById('selectedInfo').textContent = `当前选择：${size}人社群`;
+        }
+
+        function execute() {
+            const materialName = document.getElementById('materialName').value.trim();
+            const material = document.getElementById('material').value.split('\n').filter(line => line.trim() !== '');
+            const batchSize = parseInt(document.getElementById('batchSize').value);
+            const admin = document.getElementById('admin').value.split('\n').filter(line => line.trim() !== '');
+            const waterArmy = document.getElementById('waterArmy').value.split('\n').filter(line => line.trim() !== '');
+            const groupName = document.getElementById('groupName').value;
+            const startNumber = parseInt(document.getElementById('startNumber').value);
+            const groupDesc = document.getElementById('groupDesc').value;
+            const groupLinks = document.getElementById('groupLinks').value.split('\n')
+                .filter(line => line.trim() !== '')
+                .map(link => {
+                    const match = link.match(/https?:\/\/\S+/);
+                    return match ? match[0] : '';
+                })
+                .filter(link => link.trim() !== '');
+
+            let currentNumber = startNumber;
+            let linkIndex = 0;
+
+            for (let i = 0; i < material.length; i += batchSize) {
+                const batch = material.slice(i, i + batchSize);
+                let fileContent = `料子名称加社群链接\n\n`;
+
+                // 每400个料子数据分配一个编号
+                const startBatchNumber = currentNumber;
+                const endBatchNumber = currentNumber + Math.ceil(batch.length / communitySize) - 1;
+
+                // 生成料子名称加社群链接
+                for (let j = 0; j < Math.ceil(batch.length / communitySize); j++) {
+                    const currentNum = currentNumber + j;
+                    // 替换料子名称中的{序号}
+                    const formattedMaterialName = materialName.replace(/{序号}/g, currentNum);
+                    // 获取对应的社群链接
+                    const link = linkIndex < groupLinks.length ? groupLinks[linkIndex] : '';
+                    fileContent += `${formattedMaterialName}-\n${link}\n`;
+
+                    // 如果还有链接未分配，则分配下一个链接
+                    if (linkIndex < groupLinks.length) {
+                        linkIndex++;
+                    }
+                }
+
+                // 生成社群名称
+                fileContent += `\n社群名称：\n`;
+                for (let j = startBatchNumber; j <= endBatchNumber; j++) {
+                    // 替换社群名称中的{序号}
+                    const formattedGroupName = groupName.replace(/{序号}/g, j);
+                    fileContent += `${formattedGroupName}\n`;
+                }
+
+                // 群描述、管理员、水军和料子数据
+                fileContent += `\n群描述\n\n${groupDesc}\n\n`;
+                fileContent += `管理员\n\n${admin.join('\n')}\n\n`;
+                fileContent += `水军\n\n${waterArmy.join('\n')}\n\n`;
+                fileContent += `料子\n\n${batch.join('\n')}\n\n`;
+
+                // 生成文件名（格式：料子名称固定部分-起始编号-结束编号-描述部分.txt）
+                const fileNameBase = materialName.replace(/{序号}.*/, '').trim(); // 提取料子名称固定部分
+                const fileNameDesc = materialName.replace(/.*{序号}/, '').trim(); // 提取描述部分
+                const fileName = `${fileNameBase}-${startBatchNumber}-${endBatchNumber}-${fileNameDesc}.txt`;
+                saveFile(fileName, fileContent);
+
+                // 更新当前编号
+                currentNumber += Math.ceil(batch.length / communitySize);
+            }
+        }
+
+        function saveFile(fileName, content) {
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        document.getElementById('material').addEventListener('input', function() {
+            const lines = this.value.split('\n').filter(line => line.trim() !== '');
+            document.getElementById('materialCount').textContent = `共 ${lines.length} 行`;
+        });
+
+        document.getElementById('admin').addEventListener('input', function() {
+            const lines = this.value.split('\n').filter(line => line.trim() !== '');
+            document.getElementById('adminCount').textContent = `共 ${lines.length} 个管理员`;
+        });
+
+        document.getElementById('waterArmy').addEventListener('input', function() {
+            const lines = this.value.split('\n').filter(line => line.trim() !== '');
+            document.getElementById('waterArmyCount').textContent = `共 ${lines.length} 个水军`;
+        });
+    </script>
+</body>
+</html>
