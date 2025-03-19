@@ -2,11 +2,11 @@
 
 
 a = Analysis(
-    ['E:/GP/pythonProject1/pages/GT.py'],
+    ['E:/GP/pythonProject1/pages/自建小群.py'],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=['tkinter', 'tkinterdnd2', 'os'],
+    hiddenimports=['time', 'tkinter', 'subprocess', 'threading'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='GT',
+    name='自建小群',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

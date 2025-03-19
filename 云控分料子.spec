@@ -2,11 +2,11 @@
 
 
 a = Analysis(
-    ['E:/GP/pythonProject1/pages/GT.py'],
+    ['E:/GP/pythonProject1/云控分料子.py'],
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=['tkinter', 'tkinterdnd2', 'os'],
+    hiddenimports=['re', 'os', 'pandas', 'tkinter'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='GT',
+    name='云控分料子',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
